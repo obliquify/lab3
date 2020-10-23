@@ -1,10 +1,11 @@
 
-// console.log(moment().format('MMMM Do YYYY, h:mma'))
+
 Vue.component('star-rating', VueStarRating.default);
 
 let app = new Vue({
   el: '#app',
   data: {
+    curRating:0,
     number: '',
     max: '',
     current: {
@@ -16,7 +17,8 @@ let app = new Vue({
     addedName: '',
     addedComment: '',
     comments: {},
-    rating: 0,
+
+    ratings: {},
 
   },
 
@@ -39,6 +41,25 @@ let app = new Vue({
         this.current = response.data;
         this.loading = false;
         this.number = response.data.num;
+
+        if (!(this.number in this.ratings)){
+
+            Vue.set(this.ratings, this.number, {
+              sum: 0,
+              total: 0
+            });
+            this.curRating = 0;
+        }
+
+        else{
+          this.curRating = ((this.ratings[this.number].sum) / (this.ratings[this.number].total)).toFixed(1);
+        }
+
+
+
+
+
+
       } catch (error) {
         this.number = this.max;
       }
@@ -86,18 +107,22 @@ let app = new Vue({
       this.addedComment = '';
     },
 
-    setRating: function(rating){
-      // if (!(this.number in this.ratings))
-      //   Vue.set(this.ratings, this.number, {
-      //     sum: 0,
-      //     total: 0,
-      // });
-      // this.ratings[this.number].sum += rating;
-      // this.ratings[this.number].total += 1;
-      this.rating = rating;
-      console.log(this.rating)
-    },
+    setRating:function (rating) {
 
+
+      if (!(this.number in this.ratings)){
+
+          Vue.set(this.ratings, this.number, {
+            sum: 0,
+            total: 0
+          });
+
+      }
+
+      this.ratings[this.number].sum += rating;
+      this.ratings[this.number].total += 1;
+     this.curRating = ((this.ratings[this.number].sum) / (this.ratings[this.number].total)).toFixed(1);
+    },
 
 
 

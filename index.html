@@ -25,10 +25,13 @@
       <img v-bind:src="current.img" v-bind:alt="current.alt">
       <p>{{current.alt}}</p>
       <p><i>#{{current.num}}, drawn on {{current.month}}-{{current.day}}-{{current.year}}</i></p>
-    </div>
 
+
+<h3>Average {{curRating}}</h3>
     <star-rating  @rating-selected ="setRating"
-            :increment="0.5"></star-rating>
+            :increment="0.5">
+    </star-rating>
+
 
 
 
@@ -47,9 +50,9 @@
       <p>{{comment.text}}</p>
       <p><i>-- {{comment.author}}</i> <i> {{comment.time}}</i></p>
     </div>
+        </div>
 
   </div>
-
 
 <!-- My repository -->
   <footer class="footer">
@@ -63,10 +66,8 @@
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <!-- V3 -->
-<script src="https://unpkg.com/vue-star-rating/dist/VueStarRating.umd.min.js"></script>
-  <script src="https://unpkg.com/vue-star-rating@next/dist/VueStarRating.umd.min.js"></script>
-  <!-- V2 -->
-  <script src="https://unpkg.com/vue-star-rating/dist/VueStarRating.umd.min.js"></script>`
+  <script src="https://unpkg.com/vue-star-rating@1.7.0/dist/VueStarRating.umd.min.js" ></script>
   <script src="script.js"></script>
+  </body>
 
 </html>
